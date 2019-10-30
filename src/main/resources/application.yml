@@ -1,0 +1,21 @@
+database:
+  mysql:
+    class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sys
+    user: root
+    pwd: 123456
+  postgresql:
+    class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
+    user: adam
+    pwd: 123456
+  oracle:
+    class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+    user: system
+    pwd: 123456
+  sqlserver:
+    class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://127.0.0.1:1433;databaseName=DWQueue
+    user: sa
+    pwd: 123456

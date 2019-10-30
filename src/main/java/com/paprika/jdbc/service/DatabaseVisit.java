@@ -1,6 +1,6 @@
-package service;
+package com.paprika.jdbc.service;
 
-import domain.DataSourceInfoDto;
+import com.paprika.jdbc.domain.DataSourceInfoDto;
 
 /**
  * @author adam
@@ -12,10 +12,10 @@ public interface DatabaseVisit {
     /**
      * @param dataSourceInfoDto 建立数据库连接的源数据信息
      */
-    public void conn(DataSourceInfoDto dataSourceInfoDto);
+    void conn(DataSourceInfoDto dataSourceInfoDto);
 
     /**
      * 关闭数据库连接
      */
-    public void closeConnection();
+    void closeConnection();
 }

@@ -1,29 +1,29 @@
-import domain.DataSourceInfoDto;
+
+import com.paprika.jdbc.App;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import service.impl.MysqlVisitServiceImpl;
+import com.paprika.jdbc.service.impl.MysqlVisitServiceImpl;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import javax.annotation.Resource;
 
 /**
  * @author adam
  * @date 2019/4/25 15:31
  * PS: You may say that I'm a dreamer.But I'm not the only one.
  */
-public class TestMysql {
+@Slf4j
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = App.class)
+public class TestMysql{
 
-    private static final Logger logger = LoggerFactory.getLogger(TestMysql.class.getName());
-
-    private DataSourceInfoDto dataSourceInfoDto = new DataSourceInfoDto();
+    @Resource
+    MysqlVisitServiceImpl mysqlVisitService;
 
     @Test
-    public void teseConn(){
-        MysqlVisitServiceImpl mysqlVisitService = new MysqlVisitServiceImpl();
-        dataSourceInfoDto.setClassName("com.mysql.jdbc.Driver");
-        dataSourceInfoDto.setUrl("jdbc:mysql://127.0.0.1:3306/sys");
-        dataSourceInfoDto.setUser("root");
-        dataSourceInfoDto.setPwd("123456");
-        mysqlVisitService.conn(dataSourceInfoDto);
+    public void testConn(){
+        mysqlVisitService.conn(MysqlVisitServiceImpl.getDatasource());
         mysqlVisitService.closeConnection();
     }
-
 }

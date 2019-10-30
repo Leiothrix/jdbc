@@ -1,10 +1,8 @@
-package service.impl;
+package com.paprika.jdbc.service.impl;
 
-import domain.DataSourceInfoDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import service.DatabaseVisit;
-
+import com.paprika.jdbc.domain.DataSourceInfoDto;
+import lombok.extern.slf4j.Slf4j;
+import com.paprika.jdbc.service.DatabaseVisit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,9 +12,8 @@ import java.sql.SQLException;
  * @date 2019/4/25 12:28
  * PS: You may say that I'm a dreamer.But I'm not the only one.
  */
+@Slf4j
 public abstract class AbstractDatabaseVisitImpl implements DatabaseVisit {
-
-    private static final Logger logger = LoggerFactory.getLogger(AbstractDatabaseVisitImpl.class.getName());
 
     private Connection conn;
 
@@ -26,7 +23,7 @@ public abstract class AbstractDatabaseVisitImpl implements DatabaseVisit {
             Class.forName(dataSourceInfoDto.getClassName());
             conn = DriverManager.getConnection(dataSourceInfoDto.getUrl(), dataSourceInfoDto.getUser(), dataSourceInfoDto.getPwd());
         }catch (Exception e){
-            logger.error(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 
@@ -37,7 +34,7 @@ public abstract class AbstractDatabaseVisitImpl implements DatabaseVisit {
                 conn.close();
             }
         } catch (SQLException e) {
-            logger.error("关闭db连接异常：{}", e.getMessage());
+            log.error("关闭db连接异常：{}", e.getMessage());
             throw new RuntimeException("关闭资源连接失败");
         }
     }
